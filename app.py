@@ -2,29 +2,26 @@
 
 from flask import Flask, render_template, redirect, request
 import sqlite3
+import json
 
 app = Flask(__name__)
 database = sqlite3.connect("db.sqlite")
 
 @app.route("/")
 def index():
-    try:
-        pageNo = int(request.args.get("page", 0))
-    except:
-        pageNo = 0
+    return render_template("index.html")
 
+@app.route("/query")
+def query():
     cursor = database.cursor()
-    ret = cursor.execute("""
-        SELECT 
-            name
-        FROM 
-            nyaa
-        LIMIT 
-            50
-        OFFSET 
-            (?)
-    """, [pageNo * 50])
-    return render_template("index.html", rows=list(ret))
-
+    print(request.form)
+    return json.dumps({
+        "draw":request.args.get("draw"),
+        "recordsTotal":1,
+        "recordsFiltered":1,
+        "data": [
+                    {"name":"a"}
+                ],
+    })
 if __name__ == "__main__":
     app.run()

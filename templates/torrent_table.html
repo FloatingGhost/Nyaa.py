@@ -4,17 +4,16 @@
       <td>Name</td>
     <tr>
   </thead>
-  <tbody>
-    {% for item in rows %}
-    <tr>
-      <td>{{ item[0] }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
 </table>  
-
 <script>
 $(document).ready(function() {
-  $("#torrents").DataTable()
-})
+    $('#torrents').DataTable( {
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+          "url" : "query",
+        }        
+    } );
+} );
+console.log("OK");
 </script>
