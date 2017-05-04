@@ -5,10 +5,7 @@ A flask re-implementation of Nyaa.se
 # Installation
 
 ```bash
-sudo apt-get install python3 npm
-npm i
-# If that doesn't work, try 
-ln -s /usr/bin/node /usr/bin/nodejs
+sudo apt-get install python3 python3-pip
 
 sudo pip3 install -r REQUIREMENTS.txt
 
